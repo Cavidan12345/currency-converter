@@ -1,44 +1,37 @@
-// import React from 'react';
+import Input from './ui/Input';
+import Select from './ui/Select';
 
-// const Convertser = () => {
-//   return (
-//     <div className="converter">
-//       <div className="converter-content">
-//         <h2>Currency Calculator</h2>
-//         <div className="form-item">
-//           <select name="select" onChange={firstFormChangeHandler} value={firstForm.select}>
-//             <option value="UAH">UAH</option>
-//             <option value="USD">USD</option>
-//             <option value="EUR">EUR</option>
-//           </select>
-//           <input
-//             onChange={firstFormChangeHandler}
-//             name="input"
-//             placeholder="From"
-//             value={firstForm.input}
-//             type="number"
-//           />
-//         </div>
-//         <div className="form-item">
-//           <select onChange={secondFormChangeHandler} name="select" value={secondForm.select}>
-//             <option value="UAH">UAH</option>
-//             <option value="USD">USD</option>
-//             <option value="EUR">EUR</option>
-//           </select>
-//           <input
-//             type="number"
-//             onChange={secondFormChangeHandler}
-//             name="input"
-//             placeholder="To"
-//             value={secondForm.input}
-//           />
-//         </div>
-//         {firstForm.select === secondForm.select && (
-//           <p className="error">Please choose different currencies</p>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
+const Convertser = ({ form, formChangeHandler }) => {
+  return (
+    <div className="converter">
+      <div className="converter-content">
+        <h2>Currency Calculator</h2>
 
-// export default Convertser;
+        <div className="form-item">
+          <Select onChange={formChangeHandler} name="first_select" value={form.first_select} />
+          <Input
+            onChange={formChangeHandler}
+            name="first_input"
+            placeholder="From"
+            value={form.first_input}
+          />
+        </div>
+        <div className="form-item">
+          <Select onChange={formChangeHandler} name="second_select" value={form.second_select} />
+          <Input
+            onChange={formChangeHandler}
+            name="second_input"
+            placeholder="To"
+            value={form.second_input}
+            className="second-input"
+          />
+        </div>
+        {form.first_select === form.second_select && (
+          <p className="error">Please choose different currencies</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Convertser;

@@ -1,7 +1,6 @@
 import { memo } from 'react';
 
 const Header = ({ currencyValue }) => {
-  console.log(1);
   return (
     <header>
       <div className="header-content">

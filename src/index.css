@@ -23,6 +23,11 @@ body {
   font-weight: 700;
 }
 
+h2 {
+  font-size: 28px;
+  color: #081d86;
+}
+
 .wrapper {
   background: rgb(2, 0, 36);
   background: linear-gradient(
@@ -46,11 +51,6 @@ header {
   padding: 20px 50px;
   border-radius: 10px;
   background-color: white;
-}
-
-h2 {
-  font-size: 28px;
-  color: #081d86;
 }
 
 .table {
