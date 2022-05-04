@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const useForm = () => {
+const useForm = (initialState) => {
   const [form, setForm] = useState({
     first_input: '',
     first_select: 'UAH',

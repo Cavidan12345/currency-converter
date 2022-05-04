@@ -7,7 +7,7 @@ import useForm from './hooks/useForm';
 import { getCurrency } from './lib/api';
 
 // Components
-import Convertser from './components/Convertser';
+import Convertser from './components/Converter';
 import Header from './components/Header';
 
 function App() {
@@ -32,12 +32,16 @@ function App() {
           eur: data.data.rates.EUR.rate,
         });
       })
+      .catch((err) => {
+        console.log(err);
+      })
       .finally(() => setCurrencyLoading(false));
   }, []);
 
   const isFormValid =
     form.first_select !== form.second_select &&
     (form.first_input.length !== 0 || form.second_input.length !== 0);
+
   useEffect(() => {
     if (isFormValid) {
       let params = {
@@ -49,24 +53,26 @@ function App() {
         },
       };
 
-      getCurrency({ params }).then((data) => {
-        if (!form.reverse) {
-          setForm((prev) => {
-            return {
-              ...prev,
-              second_input: data.data.rates[form.second_select].rate_for_amount,
-            };
-          });
-        }
-        if (form.reverse) {
-          setForm((prev) => {
-            return {
-              ...prev,
-              first_input: data.data.rates[form.first_select].rate_for_amount,
-            };
-          });
-        }
-      });
+      getCurrency({ params })
+        .then((data) => {
+          if (!form.reverse) {
+            setForm((prev) => {
+              return {
+                ...prev,
+                second_input: data.data.rates[form.second_select].rate_for_amount,
+              };
+            });
+          }
+          if (form.reverse) {
+            setForm((prev) => {
+              return {
+                ...prev,
+                first_input: data.data.rates[form.first_select].rate_for_amount,
+              };
+            });
+          }
+        })
+        .catch((err) => console.log(err));
     }
   }, [
     isFormValid,
