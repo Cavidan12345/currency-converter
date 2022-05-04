@@ -1,6 +1,31 @@
-import { memo } from 'react';
+import { useEffect, useState } from 'react';
 
-const Header = ({ currencyValue }) => {
+// API
+import { getCurrency } from '../lib/api';
+
+const Header = () => {
+  const [currencyValue, setCurrencyValue] = useState({
+    usd: '',
+    eur: '',
+  });
+
+  useEffect(() => {
+    let params = {
+      format: 'json',
+      from: 'UAH',
+      amount: '1',
+    };
+    getCurrency({ params })
+      .then((data) => {
+        setCurrencyValue({
+          usd: data.data.rates.USD.rate,
+          eur: data.data.rates.EUR.rate,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <header>
       <div className="header-content">
@@ -24,4 +49,4 @@ const Header = ({ currencyValue }) => {
   );
 };
 
-export default memo(Header);
+export default Header;

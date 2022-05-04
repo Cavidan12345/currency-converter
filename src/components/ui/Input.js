@@ -1,14 +1,5 @@
-const Input = ({ onChange, name, placeholder, value, className }) => {
-  return (
-    <input
-      className={className}
-      onChange={onChange}
-      name={name}
-      placeholder={placeholder}
-      value={value}
-      type="number"
-    />
-  );
+const Input = (props) => {
+  return <input {...props} type="number" />;
 };
 
 export default Input;
