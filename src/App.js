@@ -75,6 +75,7 @@ function App() {
     form.second_input,
     form.second_select,
     form.first_select,
+    setForm,
   ]);
 
   if (currencyLoading) {

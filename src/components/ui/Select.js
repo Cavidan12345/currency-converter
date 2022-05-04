@@ -1,9 +1,15 @@
+const options = [{ value: 'UAH' }, { value: 'USD' }, { value: 'EUR' }];
+
 const Select = ({ name, value, onChange }) => {
   return (
     <select name={name} onChange={onChange} value={value}>
-      <option value="UAH">UAH</option>
-      <option value="USD">USD</option>
-      <option value="EUR">EUR</option>
+      {options.map(({ value }) => {
+        return (
+          <option key={value} value={value}>
+            {value}
+          </option>
+        );
+      })}
     </select>
   );
 };
